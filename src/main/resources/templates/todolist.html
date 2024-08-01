@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList Page</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light  mb-3 p-1">
+    <img class="navbar-brand m-1" th:src="@{Images/FordCredit.png}"/>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/todos">Home</a></li>
+        </ul>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h2>Your Todo's are :</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>TargetDate</th>
+            <th>isDone</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+             <tr th:each="todo: ${todos}">
+                 <td th:text="${todo.id}"></td>
+                 <td th:text="${todo.description}"></td>
+                 <td th:text="${todo.getTargetedDate()}"></td>
+                 <td th:text="${todo.isCompleted}"></td>
+                 <td> <a th:href="@{/deletetodo/{id}(id=${todo.id})}" class="btn btn-primary">Delete</a></td>
+                 <td> <a th:href="@{updatetodo/{id}(id=${todo.id})}" class="btn btn-warning">Update</a></td>
+             </tr>
+        </tbody>
+    </table>
+    <a href="addtodo" class="btn btn-success">Add Todo</a>
+</div>
+<div></div>
+</body>
+</html>
